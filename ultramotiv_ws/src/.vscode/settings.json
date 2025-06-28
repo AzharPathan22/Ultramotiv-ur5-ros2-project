@@ -1,0 +1,24 @@
+{
+    "python.autoComplete.extraPaths": [
+        "/home/azhar/ultramotiv_ws/install/ur_robot_driver/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/install/ur_moveit_config/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/install/ur_dashboard_msgs/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/build/ur5_sim",
+        "/home/azhar/ultramotiv_ws/install/ur5_sim/lib/python3.10/site-packages",
+        "/home/azhar/ros2_ws/build/my_robot_controller",
+        "/home/azhar/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "/home/azhar/ultramotiv_ws/install/ur_robot_driver/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/install/ur_moveit_config/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/install/ur_dashboard_msgs/local/lib/python3.10/dist-packages",
+        "/home/azhar/ultramotiv_ws/build/ur5_sim",
+        "/home/azhar/ultramotiv_ws/install/ur5_sim/lib/python3.10/site-packages",
+        "/home/azhar/ros2_ws/build/my_robot_controller",
+        "/home/azhar/ros2_ws/install/my_robot_controller/lib/python3.10/site-packages",
+        "/opt/ros/humble/lib/python3.10/site-packages",
+        "/opt/ros/humble/local/lib/python3.10/dist-packages"
+    ]
+}

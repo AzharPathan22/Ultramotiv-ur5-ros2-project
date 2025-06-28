@@ -1,0 +1,109 @@
+<?xml version="1.0" ?>
+<sdf version="1.6">
+  <world name="ultramotiv_world">
+    
+    <!-- 🌍 Environment Setup: Gravity, Lighting -->
+
+    <!-- ☀️ Directional light source simulating sunlight -->
+    <light name="sun" type="directional">
+      <cast_shadows>true</cast_shadows>
+      <pose>0 0 10 0 0 0</pose> <!-- Positioned above origin -->
+      <diffuse>1 1 1 1</diffuse> <!-- Full white light -->
+      <specular>0.1 0.1 0.1 1</specular> <!-- Low specular reflection -->
+      <direction>-0.5 0.5 -1</direction> <!-- Light pointing diagonally -->
+    </light>
+
+    <!-- 🟫 Ground Plane Model -->
+    <model name="custom_ground">
+      <static>true</static> <!-- Does not move -->
+      <link name="ground_link">
+        <collision name="collision">
+          <geometry>
+            <box><size>10 10 0.01</size></box> <!-- Large thin box as ground -->
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>10 10 0.01</size></box>
+          </geometry>
+          <material>
+            <diffuse>0.5 0.5 0.5 1</diffuse> <!-- Medium gray -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 🪑 Table on which objects will be placed -->
+    <model name="solid_table">
+      <static>true</static>
+      <link name="link">
+        <pose>0 0 0.38 0 0 0</pose> <!-- Slightly raised from ground -->
+        <collision name="collision">
+          <geometry>
+            <box><size>1.0 1.0 0.75</size></box> <!-- Table size -->
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>1.0 1.0 0.75</size></box>
+          </geometry>
+          <material>
+            <ambient>0.3 0.3 0.3 1</ambient> <!-- Low ambient reflectance -->
+            <diffuse>0.5 0.4 0.3 1</diffuse> <!-- Brownish color -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 🟥 Red Cube Object on Table -->
+    <model name="cube_object">
+      <static>true</static>
+      <link name="link">
+        <pose>0.3 0.3 0.78 0 0 0</pose> <!-- Placed on top of the table -->
+        <collision name="collision">
+          <geometry>
+            <box><size>0.1 0.1 0.1</size></box>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <box><size>0.1 0.1 0.1</size></box>
+          </geometry>
+          <material>
+            <ambient>0.6 0.0 0.0 1</ambient> <!-- Dark red ambient -->
+            <diffuse>1.0 0.0 0.0 1</diffuse> <!-- Bright red -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+    <!-- 🔵 Blue Cylinder Object on Table -->
+    <model name="cylinder_object">
+      <static>true</static>
+      <link name="link">
+        <pose>0.45 0.4 0.78 0 0 0</pose> <!-- Also on table -->
+        <collision name="collision">
+          <geometry>
+            <cylinder>
+              <radius>0.04</radius>
+              <length>0.15</length>
+            </cylinder>
+          </geometry>
+        </collision>
+        <visual name="visual">
+          <geometry>
+            <cylinder>
+              <radius>0.04</radius>
+              <length>0.15</length>
+            </cylinder>
+          </geometry>
+          <material>
+            <ambient>0 0.0 0.6 1</ambient> <!-- Dark blue ambient -->
+            <diffuse>0 0.0 1.0 1</diffuse> <!-- Bright blue -->
+          </material>
+        </visual>
+      </link>
+    </model>
+
+  </world>
+</sdf>

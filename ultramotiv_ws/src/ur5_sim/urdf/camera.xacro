@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+    <!-- Define a red material -->
+    <material name="red">
+        <color rgba="1 0 0 1"/>
+    </material>
+
+    <!-- Camera Link -->
+    <link name="camera_link">
+        <inertial>
+            <origin xyz="-0.00936 -0.00003 -0.00273" rpy="0 0 0"/>
+            <mass value="0.2197"/>
+            <inertia 
+                ixx="0.00000429247" ixy="0.00000000000" ixz="0.00000002565"
+                iyy="0.00000008027" iyz="0.00000000000" izz="0.00000427339"/>
+        </inertial>
+
+        <visual>
+            <geometry>
+                <!-- Camera body mesh -->
+                <mesh filename="package://ur5_sim/meshes/kinetic.stl"/>
+            </geometry>
+            <material name="red"/>
+        </visual>
+
+        <collision>
+            <geometry>
+                <!-- Collision geometry -->
+                <mesh filename="package://ur5_sim/meshes/kinetic.dae"/>
+            </geometry>
+        </collision>
+    </link>
+
+    <!-- Joint to attach camera to wrist_3_link -->
+    <joint name="camera_joint" type="fixed">
+        <parent link="wrist_3_link"/> <!-- Eye-in-hand configuration -->
+        <child link="camera_link"/>
+        <origin xyz="0 0 0.1" rpy="0 0 1.57"/>
+    </joint>
+
+    <!-- Optical link for ROS camera pipeline compatibility -->
+    <link name="camera_optical_link"/>
+
+    <joint name="camera_optical_joint" type="fixed">
+        <parent link="camera_link"/>
+        <child link="camera_optical_link"/>
+        <origin xyz="0 0 0" rpy="-1.57 0 -1.57"/>
+    </joint>
+
+    <!-- Gazebo plugin for camera -->
+    <gazebo reference="camera_link">
+
+        <visual>
+            <geometry>
+                <mesh>
+                    <uri>package://ur5_sim/meshes/kinetic.stl</uri>
+                </mesh>
+            </geometry>
+            <material>Gazebo/Red</material>
+        </visual>
+
+        <sensor name="camera" type="depth">
+            <pose>0 0 0 0 0 0</pose>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+
+            <camera>
+                <horizontal_fov>1.089</horizontal_fov>
+                <image>
+                    <format>R8G8B8</format>
+                    <width>640</width>
+                    <height>480</height>
+                </image>
+                <clip>
+                    <near>0.05</near>
+                    <far>8</far>
+                </clip>
+            </camera>
+
+            <!-- ROS-Gazebo plugin for camera -->
+            <plugin name="rgbd_camera_controller" filename="libgazebo_ros_camera.so">
+                <frame_name>camera_optical_link</frame_name>
+            </plugin>
+        </sensor>
+    </gazebo>
+
+    <gazebo reference="camera_link">
+        <visual>
+            <geometry>
+                <mesh filename="package://ur5_sim/meshes/kinetic.stl"/>
+            </geometry>
+            <material>Gazebo/Red</material>
+        </visual>
+    </gazebo>
+
+</robot>
